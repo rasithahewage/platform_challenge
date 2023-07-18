@@ -80,6 +80,8 @@ Install Docker and Docker Compose
    74  sudo npm run upgrade
    75  history
 
+install the required dependencies (cdktf, cdktf-cli, hashicups-provider) and compile the TypeScript code using the cdktf command-line tool before deploying the infrastructure.
+
 Coffee Ordering Platform - Resource Deployment and Deletion
 This document provides step-by-step instructions on how to apply and delete the resources for the Coffee Ordering Platform using CDK for Terraform.
 
