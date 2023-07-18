@@ -1,6 +1,7 @@
 # platform_challenge
 Terraform Hashicup Provider Challenge
     1  sudo apt update
+Install Terraform 
     2  sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
     3  wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
     4  gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg --fingerprint
@@ -9,6 +10,9 @@ Terraform Hashicup Provider Challenge
     7  sudo apt update
     8  sudo apt-get install terraform
     9  sudo apt-get update
+
+Install Docker and Docker Compose
+    
    10  sudo apt-get install ca-certificates curl gnupg
    11  sudo install -m 0755 -d /etc/apt/keyrings
    12  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
