@@ -1,6 +1,7 @@
+import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { TerraformStack } from 'cdktf';
-import { HashicupsProvider, Order } from '@cdktf/provider-hashicups';
+import { HashiCupsProvider, NullProvider } from '@cdktf/provider-null';
+import { TerraformOutput, TerraformStack, Token } from 'cdktf';
 import * as path from 'path';
 import * as fs from 'fs';
 
@@ -16,8 +17,13 @@ export class CoffeeOrderingStack extends TerraformStack {
     const ordersPath = './orders';
 
     // HashiCups provider
-    const hashicupsProvider = new HashicupsProvider(this, 'hashicups', {
+    const hashicupsProvider = new HashiCupsProvider(this, 'hashicups', {
       alias: 'hashicups',
+    });
+
+    // Null provider
+    const nullProvider = new NullProvider(this, 'null', {
+      alias: 'null',
     });
 
     // Process order folders
@@ -29,17 +35,22 @@ export class CoffeeOrderingStack extends TerraformStack {
       const orderItems = this.readOrderItems(path.join(ordersPath, folderName));
 
       // Create a HashiCups order for each item
-      orderItems.forEach((item) => {
-        new Order(this, `order-${orderId}-${item.coffee}`, {
-          alias: `order_${orderId}_${item.coffee}`,
+      orderItems.forEach((item, index) => {
+        new HashiCupsProvider.Order(this, `order-${orderId}-${index}`, {
+          alias: `hashicups_order_${orderId}_${index}`,
           coffee: item.coffee,
           quantity: item.quantity,
         });
       });
     });
 
-    // Output provider alias
-    this.outputValue('hashicupsProviderAlias', hashicupsProvider.getAlias('hashicups'));
+    // Outputs
+    new TerraformOutput(this, 'hashicupsProviderAlias', {
+      value: Token.asString(hashicupsProvider.getAlias('hashicups')),
+    });
+    new TerraformOutput(this, 'nullProviderAlias', {
+      value: Token.asString(nullProvider.getAlias('null')),
+    });
   }
 
   private listOrderFolders(ordersPath: string): string[] {
@@ -67,3 +78,7 @@ export class CoffeeOrderingStack extends TerraformStack {
     return orderItems;
   }
 }
+
+const app = new cdk.App();
+new CoffeeOrderingStack(app, 'CoffeeOrderingStack');
+app.synth();
