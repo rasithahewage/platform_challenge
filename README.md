@@ -87,7 +87,6 @@ Prerequisites
 CDK for Terraform installed on your local machine.
 Access credentials or keys required to authenticate and access the target infrastructure.
 Applying Resources
-To apply the resources for the Coffee Ordering Platform, follow these steps:
 
 Open a terminal or command prompt.
 
@@ -95,13 +94,9 @@ Navigate to the root directory of the CDK for Terraform project.
 
 Install the project dependencies by running the following command:
 
-shell
-Copy code
 npm install
 Synthesize the Terraform configuration files by running the following command:
 
-shell
-Copy code
 cdktf synth
 This command generates the Terraform configuration based on the CDK for Terraform code and generates the necessary Terraform files.
 
@@ -109,8 +104,6 @@ Review the generated Terraform files located in the cdktf.out directory to ensur
 
 Deploy the infrastructure resources by running the following command:
 
-shell
-Copy code
 cdktf deploy
 This command applies the Terraform configuration and provisions the resources in the target environment. You may be prompted to confirm the deployment before proceeding.
 
@@ -127,8 +120,6 @@ Navigate to the root directory of the CDK for Terraform project.
 
 Run the following command to initiate the deletion process:
 
-shell
-Copy code
 cdktf destroy
 This command initiates the destruction of the provisioned resources. You may be prompted to confirm the deletion before proceeding.
 
