@@ -79,3 +79,63 @@ Install Docker and Docker Compose
    73  npm run upgrade
    74  sudo npm run upgrade
    75  history
+
+Coffee Ordering Platform - Resource Deployment and Deletion
+This document provides step-by-step instructions on how to apply and delete the resources for the Coffee Ordering Platform using CDK for Terraform.
+
+Prerequisites
+CDK for Terraform installed on your local machine.
+Access credentials or keys required to authenticate and access the target infrastructure.
+Applying Resources
+To apply the resources for the Coffee Ordering Platform, follow these steps:
+
+Open a terminal or command prompt.
+
+Navigate to the root directory of the CDK for Terraform project.
+
+Install the project dependencies by running the following command:
+
+shell
+Copy code
+npm install
+Synthesize the Terraform configuration files by running the following command:
+
+shell
+Copy code
+cdktf synth
+This command generates the Terraform configuration based on the CDK for Terraform code and generates the necessary Terraform files.
+
+Review the generated Terraform files located in the cdktf.out directory to ensure they represent the desired infrastructure configuration.
+
+Deploy the infrastructure resources by running the following command:
+
+shell
+Copy code
+cdktf deploy
+This command applies the Terraform configuration and provisions the resources in the target environment. You may be prompted to confirm the deployment before proceeding.
+
+Monitor the deployment progress and review any outputs or log messages displayed in the terminal.
+
+Once the deployment is complete, you can verify the provisioned resources in the target environment.
+
+Deleting Resources
+To delete the resources provisioned by the Coffee Ordering Platform, follow these steps:
+
+Open a terminal or command prompt.
+
+Navigate to the root directory of the CDK for Terraform project.
+
+Run the following command to initiate the deletion process:
+
+shell
+Copy code
+cdktf destroy
+This command initiates the destruction of the provisioned resources. You may be prompted to confirm the deletion before proceeding.
+
+Monitor the deletion progress and review any outputs or log messages displayed in the terminal.
+
+Once the deletion is complete, verify that the resources have been removed from the target environment.
+
+Cleanup Considerations
+Double-check the deletion confirmation prompts to ensure that you are deleting the correct resources.
+Verify the successful deletion of all resources in the target environment after running the deletion command.
